@@ -1,21 +1,29 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import DeleteBtn from "../components/DeleteBtn";
-import Jumbotron from "../components/Jumbotron";
 import API from "../utils/API";
 import { Link } from "react-router-dom";
-import { Col, Row, Container } from "../components/Grid";
+import { Col, Row } from "../components/Grid";
 import { Table, Tr, Td } from "../components/Table";
-import { Input, TextArea, FormBtn } from "../components/Form";
+import { Input, ForwardRefInput, FormBtn } from "../components/Form";
 
 function Comments() {
 	// Setting our component's initial state
 	const [comments, setComments] = useState([]);
-	const [formObject, setFormObject] = useState({});
+	const [formObject, setFormObject] = useState({
+      title: "",
+      body: "",
+   });
+   
+   // get input element ref for focus
+   const titleInputElRef = useRef();
 
 	// Load all comments and store them with setComments
 	useEffect(() => {
-		loadComments();
-	}, []);
+      loadComments();
+      // focus on titleInputEl if ref exists
+      titleInputElRef.current.focus()
+   }, []);
+   
 
 	// Loads all comments and sets them to comments
 	function loadComments() {
@@ -46,17 +54,25 @@ function Comments() {
 				title: formObject.title,
 				body: formObject.body,
 			})
-				.then((res) => loadComments())
+            .then((res) => loadComments())
+            .then(() => setFormObject({
+               title: "",
+               body: "",
+            }))
 				.catch((err) => console.log(err));
 		}
 	}
 
-	return (
+	return <>
 		<Row>
-			<Col size='md-6'>
+			<Col size='md-12'>
 				<form>
-					<Input onChange={handleInputChange} name='title' placeholder='Title (required)' />
-					<TextArea onChange={handleInputChange} name='body' placeholder='your comment here' />
+					<Col size='sm-3'>
+						<ForwardRefInput ref={ titleInputElRef } value={formObject.title} onChange={handleInputChange} name='title' placeholder='Title (required)' />
+					</Col>
+					<Col size='sm-12'>
+						<Input value={formObject.body} onChange={handleInputChange} name='body' placeholder='your comment here' />
+					</Col>
 					<FormBtn
 						disabled={!(formObject.title && formObject.body)}
 						onClick={handleFormSubmit}>
@@ -64,29 +80,33 @@ function Comments() {
 					</FormBtn>
 				</form>
 			</Col>
-			<Col size='md-6 sm-12'>
+		</Row>,
+		<Row>
+			<Col size='md-12'>
 				{comments.length ? (
 					<Table>
-						{comments.map((comment) => (
-                     <Tr>
-                           <Link key={comment._id} to={"/comments/" + comment._id}>
-									<Td>
+						{comments.map(comment => (
+							<Tr key={comment._id}>
+								<Td>
+									<Link
+										to={"/comments/" + comment._id}
+										style={{ textAlign: "left", display: "block" }}>
 										<strong>{comment.title}:</strong> {comment.body}
-									</Td>
-									<Td>{comment.date}</Td>
-							</Link>
-									<Td>
-										<DeleteBtn onClick={() => deleteComment(comment._id)} />
-									</Td>
-								</Tr>
+									</Link>
+								</Td>
+								<Td>{comment.date}</Td>
+								<Td>
+									<DeleteBtn onClick={() => deleteComment(comment._id)} />
+								</Td>
+							</Tr>
 						))}
 					</Table>
 				) : (
 					<h3>No Results to Display</h3>
 				)}
 			</Col>
-		</Row>
-	);
+		</Row>,
+	</>;
 }
 
 export default Comments;

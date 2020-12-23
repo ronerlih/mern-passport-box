@@ -10,8 +10,8 @@ export function Table({ children }) {
 	);
 }
 
-export function Tr({ children }) {
-	return <tr >{children}</tr>;
+export function Tr(props) {
+	return <tr {...props} >{props.children}</tr>;
 }
 
 export function Td({ children }) {
