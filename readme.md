@@ -8,7 +8,8 @@
 ### 🗃️ Folder structure
 
 
-sh```
+sh
+```
 .
 ├── _assets                <- # project management assets
 ├── client                 <- # front end react app                        
