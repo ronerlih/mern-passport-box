@@ -6,8 +6,9 @@ module.exports = {
    login: function(req, res) {
       // Sending back a password, even a hashed password, isn't a good idea
       res.json({
-         email: req.user.email,
-         id: req.user.id
+         _id: req.user._id,
+         username: req.user.username,
+         email: req.user.email
       });
    },
 
@@ -36,7 +37,7 @@ module.exports = {
          // Otherwise send back the user's email and id
          // Sending back a password, even a hashed password, isn't a good idea
          : res.json({
-               id: req.user._id,
+               _id: req.user._id,
                username: req.user.username,
                email: req.user.email
          })

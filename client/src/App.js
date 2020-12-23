@@ -39,8 +39,8 @@ function App() {
 						render={ props => (
 							<Login
 								{...props}
-								authenticate={authenticate}
-								user={userState}
+								userState={userState}
+								setUserState={setUserState}
 							/>
 						)}
 					/>

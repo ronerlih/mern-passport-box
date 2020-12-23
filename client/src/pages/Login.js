@@ -30,12 +30,11 @@ class Login extends Component {
         password: this.state.password
       })
         .then(res => {
-           console.log(res)
           if(res.status === 200 ){
-            return <Redirect to="/comments" />
+             this.props.setUserState(res.data)
           }
         })
-        .catch(err => console.log(err.response.statusText));
+        .catch(err => console.log(err));
     }
   };
 
@@ -70,11 +69,7 @@ class Login extends Component {
              </Link>
             </form>
           </Col>
-          
         </Row>
-
-        {/* Redirect on authentication */}
-        {this.props.authenticated ? <Redirect to='/comments'/>: <div></div>}
       </Container>
     );
   }
