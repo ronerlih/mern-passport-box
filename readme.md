@@ -1,6 +1,6 @@
 # 📦 M-E-R-N + passport box
 
-##### :earth_africa: [live]() on heroku
+<!-- ##### :earth_africa: [live]() on heroku -->
 
 ## 🍽 Use
 -   Fork, or clone and copy what you need
@@ -8,7 +8,6 @@
 ### 🗃️ Folder structure
 
 
-sh
 ```
 .
 ├── _assets                <- # project management assets
