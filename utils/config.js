@@ -2,7 +2,8 @@ module.exports = {
 	mongoOptions: {
 		useNewUrlParser: true,
 		useUnifiedTopology: true,
-		autoIndex: false,
+      autoIndex: false,
+      useFindAndModify: false
 	},
 	sessionOptions: {
       secret: "keyboard cat",

@@ -9,13 +9,20 @@ const UserSchema = new mongoose.Schema({
     trim: true
   },
   username: {
+    required: true,
     type: String,
     trim: true
   },
   password: {
     type: String,
     required: true,
-  }
+  },
+  comments: [
+   {
+     type: mongoose.Types.ObjectId,
+     ref: "Comment"
+   }
+ ]
   // ..anything else you want on your user
 });
 

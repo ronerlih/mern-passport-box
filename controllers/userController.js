@@ -8,7 +8,8 @@ module.exports = {
       res.json({
          _id: req.user._id,
          username: req.user.username,
-         email: req.user.email
+         email: req.user.email,
+         comments: req.user.comments
       });
    },
 
@@ -19,12 +20,13 @@ module.exports = {
 		db.User.create({
          username: req.body.username,
 			email: req.body.email,
-			password: req.body.password,
+			password: req.body.password
 		})
       .then(() => {res.redirect(307, "/api/user/login") })
       .catch((err) => { res.status(401).json(err) });
    },
    
+   // to be implemented in the front end
    logout: function(req, res)  {
 		req.logout();
 		res.redirect("/");
@@ -39,7 +41,8 @@ module.exports = {
          : res.json({
                _id: req.user._id,
                username: req.user.username,
-               email: req.user.email
+               email: req.user.email,
+               comments: req.user.comments
          })
    }
 }

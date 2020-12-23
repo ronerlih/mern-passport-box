@@ -7,10 +7,10 @@ import { Input, FormBtn } from "../components/Form";
 
 class Signup extends Component {
   state = {
-    email: "",
-    username: "",
-    password: "",
-    passwordConf: ""
+    email: "1@1",
+    username: "one",
+    password: "1",
+    passwordConf: "1"
   };
 
   componentDidMount() {
@@ -34,7 +34,6 @@ class Signup extends Component {
 
       })
         .then(res => {
-           console.log(res)
           if(res.status === 200 ){
             this.props.authenticate();
             return <Redirect to="/comments" />
@@ -55,7 +54,7 @@ class Signup extends Component {
                 value={this.state.username}
                 onChange={this.handleInputChange}
                 name="username"
-                placeholder="username"
+                placeholder="username (required)"
               />
               <Input
                 value={this.state.email}

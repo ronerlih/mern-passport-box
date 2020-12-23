@@ -1,36 +1,35 @@
 import React, { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useRouteMatch } from "react-router-dom";
 import { Col, Row, Container } from "../components/Grid";
+import Card from "../components/Card";
 import API from "../utils/API";
 
-function Detail(props) {
+function Comment() {
   const [comment, setComment] = useState({})
-
   // When this component mounts, grab the comment with the _id of props.match.params.id
   // e.g. localhost:3000/comments/599dcb67f0f16317844583fc
-  const {id} = useParams()
-
+  const match = useRouteMatch('/comments/:id');
+   
   useEffect(() => {
-    API.getComment(id)
+    API.getComment(match.params.id)
       .then(res => setComment(res.data))
       .catch(err => console.log(err));
-  }, [id])
+  }, [match.params.id])
 
   return (
       <Container fluid>
         <Row>
           <Col size="md-10 md-offset-1">
             <article>
-               <strong> {comment.title} </strong>
-              <p>
-                {comment.body}
-              </p>
+               <Card heading={comment.username}>
+                  {comment.body}
+               </Card>
             </article>
           </Col>
         </Row>
         <Row>
           <Col size="md-2">
-            <Link to="/">← Back to all comments</Link>
+            <Link className="text-dark" to="/comments">← Back to all comments</Link>
           </Col>
         </Row>
       </Container>
@@ -38,4 +37,4 @@ function Detail(props) {
   }
 
 
-export default Detail;
+export default Comment;
