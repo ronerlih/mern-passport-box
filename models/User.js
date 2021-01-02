@@ -43,4 +43,6 @@ UserSchema.methods.validPassword = function (password) {
    return bcrypt.compareSync(password, this.password);
 };
 const User = mongoose.model('User', UserSchema);
+User.createIndexes();
+
 module.exports = User;
