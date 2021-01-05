@@ -5,7 +5,7 @@ export function Table({ children }) {
 		<table className=" table table-dark table-striped text-center text-break">
 			<tbody> 
             {children}
-         </tbody>
+        </tbody>
 		</table>
 	);
 }

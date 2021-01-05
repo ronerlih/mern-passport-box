@@ -18,11 +18,11 @@ const UserSchema = new mongoose.Schema({
     required: true,
   },
   comments: [
-   {
-     type: mongoose.Types.ObjectId,
-     ref: "Comment"
-   }
- ]
+  {
+    type: mongoose.Types.ObjectId,
+    ref: "Comment"
+  }
+]
   // ..anything else you want on your user
 });
 
@@ -40,7 +40,8 @@ UserSchema.pre('save', function (next) {
 
 // Creating a custom method for our User model. This will check if an unhashed password entered by the user can be compared to the hashed password stored in our database
 UserSchema.methods.validPassword = function (password) {
-   return bcrypt.compareSync(password, this.password);
+  return bcrypt.compareSync(password, this.password);
 };
 const User = mongoose.model('User', UserSchema);
+User.createIndexes();
 module.exports = User;
