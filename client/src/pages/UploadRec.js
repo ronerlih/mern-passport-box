@@ -10,7 +10,11 @@ function UploadRec({ username }) {
 
     //setting initial state
     const [formObject, setFormObject] = useState({
-        body: "",
+        reco_name: "",
+        reco_pic: "",
+        reco_link: "",
+        reco_description: "",
+        reco_keywords: "",
         username: ""
     });
 
@@ -20,9 +24,12 @@ function UploadRec({ username }) {
     useEffect(() => {
         //set user after successful component mount
         setFormObject({
-            body: "",
-            username: "",
-            username
+            reco_name: "",
+            reco_pic: "",
+            reco_link: "",
+            reco_description: "",
+            reco_keywords: "",
+            username: ""
         })
 
         // focus on titleInputEl if ref exists
@@ -34,18 +41,18 @@ function UploadRec({ username }) {
         alert("uploaded");
     }
 
-    //Handle updateing component state when user types into the input field
+    //Handle updating component state when user types into the input field
     function handleInputChange(event) {
         const { name, value } = event.target;
         setFormObject({ ...formObject, [name]: value });
     }
 
-    
+
     // When form submitted, use API.saveReco method to save reco data
     function handleFormSubmit(event) {
         event.preventDefault();
-        if (formObject.body) {
-                recoUploaded()
+        if (formObject.description) {
+            recoUploaded()
         }
     }
 
@@ -80,19 +87,27 @@ function UploadRec({ username }) {
     return <>
         <div>Upload</div>
         <Row>
-			<Col size='md-12'>
-				<form>
-					<Col size='sm-12'>
-						<ForwardRefInput ref={ titleInputElRef } value={formObject.body} onChange={handleInputChange} name='body' placeholder='your comment here' />
-					</Col>
-					<FormBtn
-						disabled={!formObject.body}
-						onClick={handleFormSubmit}>
-						Upload Recommendation
+            <Col size='md-12'>
+                <form>
+                    <Col size='sm-12'>
+                        <ForwardRefInput ref={titleInputElRef} value={formObject.reco_name} onChange={handleInputChange} name='reco_name' placeholder='Title' />
+
+                        <ForwardRefInput ref={titleInputElRef} value={formObject.reco_pic} onChange={handleInputChange} name='reco_pic' placeholder='Photo' />
+
+                        <ForwardRefInput ref={titleInputElRef} value={formObject.reco_link} onChange={handleInputChange} name='reco_link' placeholder='Link' />
+                   
+                        <ForwardRefInput ref={titleInputElRef} value={formObject.description} onChange={handleInputChange} name='description' placeholder='Description' />
+
+                        <ForwardRefInput ref={titleInputElRef} value={formObject.reco_keywords} onChange={handleInputChange} name='reco_keywords' placeholder='Keywords' />
+                    </Col>
+                    <FormBtn
+                        disabled={!formObject.description}
+                        onClick={handleFormSubmit}>
+                        Upload Recommendation
 					</FormBtn>
-				</form>
-			</Col>
-		</Row>
+                </form>
+            </Col>
+        </Row>
     </>
 
 }
