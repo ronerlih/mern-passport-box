@@ -17,4 +17,8 @@ export default {
   saveComment: function(commentData) {
     return axios.post("/api/comments", commentData);
   }
+ 
+  // uploadReco: function(recoData) {
+  //   return axios.post("/api/uploadRec", recoData);
+  // }
 };

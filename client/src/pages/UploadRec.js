@@ -60,7 +60,7 @@ function UploadRec({ username }) {
     // function handleFormSubmit(event) {
     //     event.preventDefault();
     //     if (formObject.body) {
-    //         API.saveReco({
+    //         API.uploadReco({
     //             body: formObject.body,
     //             username: formObject.username
     //         })
