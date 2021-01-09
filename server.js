@@ -8,7 +8,7 @@ const session = require("express-session");
 const passport = require("./utils/passport");
 const logger = require("morgan");
 
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT || 3000;
 
 // logging (development)
 app.use(logger("dev"));
