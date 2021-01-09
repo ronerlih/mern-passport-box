@@ -29,7 +29,7 @@ app.use(passport.session());
 app.use(routes);
 
 // Connect to the Mongo DB
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/mern", mongoOptions);
+mongoose.connect(process.env.ATLAS_URL || "mongodb://localhost/mern", mongoOptions);
 
 // Start the API server
 app.listen(PORT, function () {

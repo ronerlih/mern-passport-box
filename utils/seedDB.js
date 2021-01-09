@@ -4,7 +4,8 @@ const { mongoOptions } = require("./config")
 
 // This file empties the Books collection and inserts the books below
 
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/mern",
+
+mongoose.connect(process.env.ATLAS_URL || "mongodb://localhost/mern",
    mongoOptions
 );
 
