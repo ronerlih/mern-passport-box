@@ -7,7 +7,7 @@ export function Container({ fluid, children }) {
   return <div 
             className={`container${fluid ? "-fluid main-container pt-3" : " main-container pt-3"}`} 
             >
-               {children}
+              {children}
             </div>;
 }
 

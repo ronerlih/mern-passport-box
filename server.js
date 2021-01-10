@@ -8,7 +8,7 @@ const session = require("express-session");
 const passport = require("./utils/passport");
 const logger = require("morgan");
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3001;
 
 // logging (development)
 app.use(logger("dev"));
@@ -29,7 +29,7 @@ app.use(passport.session());
 app.use(routes);
 
 // Connect to the Mongo DB
-mongoose.connect(process.env.ATLAS_URL || "mongodb://localhost/mern", mongoOptions);
+mongoose.connect(process.env.ATLAS_URL || "mongodb://localhost/Perch", mongoOptions);
 
 // Start the API server
 app.listen(PORT, function () {
