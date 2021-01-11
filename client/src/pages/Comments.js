@@ -49,6 +49,7 @@ function Comments({ username }) {
 	// Handles updating component state when the user types into the input field
 	function handleInputChange(event) {
 		const { name, value } = event.target;
+		console.log(event.target);
 		setFormObject({ ...formObject, [name]: value });
 	}
 

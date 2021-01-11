@@ -2,13 +2,14 @@ import React, { useState, useEffect, useRef } from "react";
 import DeleteBtn from "../components/DeleteBtn";
 import API from "../utils/API";
 import { Link } from "react-router-dom";
-import { Col, Row } from "../components/Grid";
+import { Container, Col, Row } from "../components/Grid";
 import { Table, Tr, Td } from "../components/Table";
 import { ForwardRefInput, FormBtn } from "../components/Form";
 
 function UploadRec({ username }) {
 
     //setting initial state
+    const [recos, setRecos] = useState([]);
     const [formObject, setFormObject] = useState({
         reco_name: "",
         reco_pic: "",
@@ -29,16 +30,25 @@ function UploadRec({ username }) {
             reco_link: "",
             reco_description: "",
             reco_keywords: "",
-            username: ""
+            username: "",
+            username
         })
+
+        loadMyRecos();
 
         // focus on titleInputEl if ref exists
         titleInputElRef.current.focus()
     }, [username]);
 
     //Informs user reco was uploaded
-    function recoUploaded() {
-        alert("uploaded");
+    // function recoUploaded() {
+    //     alert("uploaded");
+    // }
+
+    function loadMyRecos() {
+        API.getMyRecos()
+            .then(res => setRecos(res.data))
+            .catch(err => console.log(err));
     }
 
     //Handle updating component state when user types into the input field
@@ -49,29 +59,37 @@ function UploadRec({ username }) {
 
 
     // When form submitted, use API.saveReco method to save reco data
-    function handleFormSubmit(event) {
-        event.preventDefault();
-        if (formObject.description) {
-            recoUploaded()
-        }
-    }
-
-    // When form submitted, use API.saveReco method to save reco data
     // function handleFormSubmit(event) {
     //     event.preventDefault();
-    //     if (formObject.body) {
-    //         API.uploadReco({
-    //             body: formObject.body,
-    //             username: formObject.username
-    //         })
-    //             .then(recoUploaded)
-    //             .then(() => setFormObject({
-    //                 body: "",
-    //                 username: ""
-    //             }))
-    //             .catch(err => console.log(err));
+    //     if (formObject.description) {
+    //         recoUploaded()
     //     }
     // }
+
+    // When form submitted, use API.saveReco method to save reco data
+    function handleFormSubmit(event) {
+        event.preventDefault();
+        if (formObject.body) {
+            API.uploadReco({
+                reco_name: formObject.reco_name,
+                reco_pic: formObject.reco_pic,
+                reco_link: formObject.reco_link,
+                reco_description: formObject.reco_description,
+                reco_keywords: formObject.reco_keywords,
+                username: formObject.username
+            })
+                // .then(recoUploaded)
+                .then(() => setFormObject({
+                    reco_name: "",
+                    reco_pic: "",
+                    reco_link: "",
+                    reco_description: "",
+                    reco_keywords: "",
+                    username: ""
+                }))
+                .catch(err => console.log(err));
+        }
+    }
 
 
     //add photo
@@ -85,6 +103,7 @@ function UploadRec({ username }) {
     //attributes = reco_name, reco_pic, reco_link, reco_description, reco_keywords
 
     return <>
+        <Container>
         <div>Upload</div>
         <Row>
             <Col size='md-12'>
@@ -95,7 +114,7 @@ function UploadRec({ username }) {
                         <ForwardRefInput ref={titleInputElRef} value={formObject.reco_pic} onChange={handleInputChange} name='reco_pic' placeholder='Photo' />
 
                         <ForwardRefInput ref={titleInputElRef} value={formObject.reco_link} onChange={handleInputChange} name='reco_link' placeholder='Link' />
-                   
+
                         <ForwardRefInput ref={titleInputElRef} value={formObject.description} onChange={handleInputChange} name='description' placeholder='Description' />
 
                         <ForwardRefInput ref={titleInputElRef} value={formObject.reco_keywords} onChange={handleInputChange} name='reco_keywords' placeholder='Keywords' />
@@ -108,7 +127,29 @@ function UploadRec({ username }) {
                 </form>
             </Col>
         </Row>
+
+        <Row>
+            <Col size="md-12">
+                {recos.length ? (
+                    <Table>
+                        {recos.map(reco => (
+                            <Tr key={reco._id}>
+                                <Td>
+                                    {reco.reco_name}
+                                </Td>
+                            </Tr>
+                        ))}
+                    </Table>
+                ) : (
+                        <h3>Upload a Recommendation</h3>
+                    )}
+
+
+            </Col>
+        </Row>
+    </Container>
     </>
+    
 
 }
 
