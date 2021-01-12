@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { BrowserRouter as Router, Route, Switch, Redirect } from "react-router-dom";
 import Comments from "./pages/Comments";
+import Home from "./pages/Home";
 import { Container } from "./components/Grid";
 import Comment from "./pages/Comment";
 import Login from "./pages/Login";
@@ -9,6 +10,7 @@ import NoMatch from "./pages/NoMatch";
 import Head from "./components/Head";
 import userAPI from "./utils/userAPI";
 import ProtectedRoute from "./components/ProtectedRoute"
+import UploadRec from "./pages/UploadRec";
 
 function App() {
 	const [userState, setUserState] = useState({});
@@ -55,8 +57,14 @@ function App() {
 							/>
 						)}
 					/>
-               <ProtectedRoute exact path={["/", "/comments"]}>
+               {/* <ProtectedRoute exact path={["/", "/comments"]}>
                   <Comments {...userState} />
+               </ProtectedRoute> */}
+			   <ProtectedRoute exact path={["/", "/home"]}>
+                  <Home {...userState} />
+               </ProtectedRoute>
+			   <ProtectedRoute exact path="/uploadRec">
+                  <UploadRec {...userState} />
                </ProtectedRoute>
                <ProtectedRoute exact path='/comments/:id' >
                   <Comment {...userState} />
@@ -64,7 +72,8 @@ function App() {
 					<Route component={NoMatch} />
 				</Switch>
 			</Container>
-         { userState.email ? <Redirect to="/comments" /> : <></>}
+			{ userState.email ? <Redirect to="/home" /> : <></>}
+         {/* { userState.email ? <Redirect to="/comments" /> : <></>} */}
 		</Router>
 	);
 }
