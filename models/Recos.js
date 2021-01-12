@@ -3,11 +3,12 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const recosSchema = new Schema({
-	username: { type: String, required: true },
-	photo: { type: String, required: true, trim: true },
-	link: { type:String, required: true, trim: true },
-	discpription: { type: String, required: true, trim: true },
-	keywords: { type: String, required: true, trim: true },
+	username: { type: String},
+	reco_name: { type: String},
+	reco_pic: { type: String, trim: true },
+	reco_link: { type:String, trim: true },
+	reco_discpription: { type: String, trim: true },
+	reco_keywords: { type: String, trim: true },
 	date: { type: Date, default: Date.now },
 });
 
