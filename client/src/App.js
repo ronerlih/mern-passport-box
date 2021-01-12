@@ -11,6 +11,7 @@ import Head from "./components/Head";
 import userAPI from "./utils/userAPI";
 import ProtectedRoute from "./components/ProtectedRoute"
 import UploadRec from "./pages/UploadRec";
+import SearchRecs from "./pages/SearchRecs"
 
 function App() {
 	const [userState, setUserState] = useState({});
@@ -65,6 +66,9 @@ function App() {
                </ProtectedRoute>
 			   <ProtectedRoute exact path="/uploadRec">
                   <UploadRec {...userState} />
+               </ProtectedRoute>
+			   <ProtectedRoute exact path="/SearchRec">
+                  <SearchRecs {...userState} />
                </ProtectedRoute>
                <ProtectedRoute exact path='/comments/:id' >
                   <Comment {...userState} />

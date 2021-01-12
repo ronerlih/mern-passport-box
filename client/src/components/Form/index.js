@@ -35,3 +35,32 @@ export function FormBtn(props) {
 		</button>
 	);
 }
+
+export function Form({ searchTerm, handleInputChange, handleFormSubmit }) {
+	return (
+		<form>
+			<div className="form-group">
+				<label htmlFor="Search">
+					<strong>Search Recommendations Below</strong>
+				</label>
+				<input className="form-control"
+					id="search-title"
+					type="text"
+					value={searchTerm}
+					name="searchTerm"
+					placeholder="Search"
+					onChange={handleInputChange}
+					required
+				/>
+			</div>
+			<div className="pull-right">
+				<button
+					className="btn btn-dark float-right"
+					onClick={handleFormSubmit}
+					type="submit">
+					Search
+                </button>
+			</div>
+		</form>
+	)
+}

@@ -9,7 +9,10 @@ import { ForwardRefInput, FormBtn } from "../components/Form";
 function Home({ username }) {
 
     return <>
-        <div>Home<button><Link to={"/uploadRec"}>Upload</Link></button></div>
+        <div>Home
+            <button><Link to={"/uploadRec"}>Upload</Link></button>
+            <button><Link to={"/searchRec"}>Search</Link></button>
+        </div>
     </>
 }
 
