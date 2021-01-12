@@ -5,9 +5,10 @@ import Card from "../components/Card";
 import { Form } from "../components/Form";
 import DisplayRecos from "../components/DisplayRecos";
 import { Container, Row, Col } from "../components/Grid";
+import { Link } from "react-router-dom";
 
 class Search extends Component {
-    state ={
+    state = {
         recoResults: [],
         searchTerm: "",
         prompt: "Search For a Product Recommendation"
@@ -30,9 +31,9 @@ class Search extends Component {
     getSearchedRecos = () => {
         API.getSearchedRecos(this.state.searchTerm)
             .then(res =>
-              this.setState({
-                  recoResults: res.data
-              })
+                this.setState({
+                    recoResults: res.data
+                })
             )
             .catch(() =>
                 this.setState({
@@ -57,52 +58,63 @@ class Search extends Component {
     }
 
     render() {
-    return (
-        <Container>
-            <Row>
-                <Col size="md-12">
-                    <Card title="Search For a Book">
-                        <Form
-                            handleInputChange={this.handleInputChange}
-                            handleFormSubmit={this.handleFormSubmit}
-                            searchTerm={this.state.searchTerm}
-                        />
-                    </Card>
-                </Col>
-            </Row>
-            <Row>
-                <Col size='md-12'>
-                    <Card title="Search Results">
-                        {this.state.recoResults.length > 0 ? (
-                            <List>
-                                {this.state.recoResults.map(result => (
-                                    <DisplayRecos
-                                        key={result._id}
-                                        title={result.reco_name}
-                                        pic={result.reco_pic}
-                                        link={result.reco_link}
-                                        description={result.reco_description}
-                                        keywords={result.reco_keywords}
-                                        date={result.reco_date}
-                                        Button={() => (
-                                            <button
-                                                className="btn btn-dark ml-2"
-                                                onClick={() => this.handleRecoSave(result._id)}>Save Recommendation</button>
-                                        )}
+        return (
+            <Container>
+                <Row>
+                    <Col size="md-12">
+                        <Card title="Search For a Book">
+                            <Form
+                                handleInputChange={this.handleInputChange}
+                                handleFormSubmit={this.handleFormSubmit}
+                                searchTerm={this.state.searchTerm}
+                            />
+                        </Card>
+                    </Col>
+                </Row>
+                <Row>
+                    <p>Upload your own:
+                        <button><Link to={"/uploadRec"}>Upload</Link></button>
+                    </p>
+                </Row>
+                <Row>
+                    <p>Or view your saved recommendations:
+                        <button><Link to={"/savedRecs"}>Saved</Link></button>
+                    </p>
+                </Row>
+                <Row>
+                    <Col size='md-12'>
+                        <Card title="Search Results">
+                            {this.state.recoResults.length > 0 ? (
+                                <List>
+                                    {this.state.recoResults.map(result => (
+                                        <DisplayRecos
+                                            key={result._id}
+                                            title={result.reco_name}
+                                            pic={result.reco_pic}
+                                            link={result.reco_link}
+                                            description={result.reco_description}
+                                            keywords={result.reco_keywords}
+                                            date={result.reco_date}
+                                            Button={() => (
+                                                <button
+                                                    className="btn btn-dark ml-2"
+                                                    onClick={() => this.handleRecoSave(result._id)}>Save Recommendation</button>
+                                            )}
 
-                                    />
-                                ))}
-                            </List>
-                        ) : (
-                                <h3 className="text-center">{this.state.prompt}</h3>
-                            )}
-                    </Card>
+                                        />
+                                    ))}
+                                </List>
+                            ) : (
+                                    <h3 className="text-center">{this.state.prompt}</h3>
+                                )}
+                        </Card>
 
 
-                </Col>
-            </Row>
-        </Container>
-    )}
+                    </Col>
+                </Row>
+            </Container>
+        )
+    }
 }
 
 export default Search;

@@ -12,6 +12,7 @@ import userAPI from "./utils/userAPI";
 import ProtectedRoute from "./components/ProtectedRoute"
 import UploadRec from "./pages/UploadRec";
 import SearchRecs from "./pages/SearchRecs"
+import SavedRecs from "./pages/SavedRecs";
 
 function App() {
 	const [userState, setUserState] = useState({});
@@ -67,8 +68,11 @@ function App() {
 			   <ProtectedRoute exact path="/uploadRec">
                   <UploadRec {...userState} />
                </ProtectedRoute>
-			   <ProtectedRoute exact path="/SearchRec">
+			   <ProtectedRoute exact path="/searchRec">
                   <SearchRecs {...userState} />
+               </ProtectedRoute>
+			   <ProtectedRoute exact path="/savedRecs">
+                  <SavedRecs {...userState} />
                </ProtectedRoute>
                <ProtectedRoute exact path='/comments/:id' >
                   <Comment {...userState} />
@@ -76,7 +80,7 @@ function App() {
 					<Route component={NoMatch} />
 				</Switch>
 			</Container>
-			{ userState.email ? <Redirect to="/home" /> : <></>}
+			{ userState.email ? <Redirect to="/searchRec" /> : <></>}
          {/* { userState.email ? <Redirect to="/comments" /> : <></>} */}
 		</Router>
 	);
