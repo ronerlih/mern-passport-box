@@ -17,10 +17,10 @@ const UserSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  posts: [
+  recos: [
   {
     type: mongoose.Types.ObjectId,
-    ref: "Post"
+    ref: "Recos"
   }
 ]
   // ..anything else you want on your user
