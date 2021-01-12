@@ -20,7 +20,8 @@ function UploadRec({ username }) {
     });
 
     //getting input element ref for focus
-    const titleInputElRef = useRef();
+    // const titleInputElRef = useRef();
+    // const picInputElRef = useRef();
 
     useEffect(() => {
         //set user after successful component mount
@@ -30,14 +31,14 @@ function UploadRec({ username }) {
             reco_link: "",
             reco_description: "",
             reco_keywords: "",
-            username: "",
-            username
+            username: "", username
         })
 
         loadMyRecos();
 
         // focus on titleInputEl if ref exists
-        titleInputElRef.current.focus()
+        // titleInputElRef.current.focus()
+        // picInputElRef.current.focus()
     }, [username]);
 
     //Informs user reco was uploaded
@@ -56,6 +57,10 @@ function UploadRec({ username }) {
         const { name, value } = event.target;
         setFormObject({ ...formObject, [name]: value });
     }
+    // function handleInputChange(event) {
+    //     const value = event.target.value;
+    //     setFormObject({ ...formObject, [event.target.name]: value });
+    // }
 
 
     // When form submitted, use API.saveReco method to save reco data
@@ -104,52 +109,59 @@ function UploadRec({ username }) {
 
     return <>
         <Container>
-        <div>Upload</div>
-        <Row>
-            <Col size='md-12'>
-                <form>
-                    <Col size='sm-12'>
-                        <ForwardRefInput ref={titleInputElRef} value={formObject.reco_name} onChange={handleInputChange} name='reco_name' placeholder='Title' />
+            <div>Upload</div>
+            <Row>
+                <Col size='md-12'>
+                    <form>
+                        <Col size='sm-12'>
+                        
+                                    <input className='form-control' value={formObject.reco_name} onChange={handleInputChange} name='reco_name' placeholder='Title' /> 
+                                    <input className='form-control' value={formObject.reco_description} onChange={handleInputChange} name='reco_description' placeholder='description' /> 
+                                    <input className='form-control' value={formObject.reco_pic} onChange={handleInputChange} name='reco_pic' placeholder='pic' />  
+                                    <input className='form-control' value={formObject.reco_link} onChange={handleInputChange} name='reco_link' placeholder='link' />  
+                                    <input className='form-control' value={formObject.reco_keywords} onChange={handleInputChange} name='reco_keywords' placeholder='keywords' />   
+                           
+                            {/* <ForwardRefInput ref={titleInputElRef} value={formObject.reco_name} onChange={handleInputChange} name='reco_name' placeholder='Title' />
 
-                        <ForwardRefInput ref={titleInputElRef} value={formObject.reco_pic} onChange={handleInputChange} name='reco_pic' placeholder='Photo' />
+                        <ForwardRefInput ref={picInputElRef} value={formObject.reco_pic} onChange={handleInputChange} name='reco_pic' placeholder='Photo' /> */}
 
-                        <ForwardRefInput ref={titleInputElRef} value={formObject.reco_link} onChange={handleInputChange} name='reco_link' placeholder='Link' />
+                            {/* <ForwardRefInput ref={titleInputElRef} value={formObject.reco_link} onChange={handleInputChange} name='reco_link' placeholder='Link' />
 
-                        <ForwardRefInput ref={titleInputElRef} value={formObject.description} onChange={handleInputChange} name='description' placeholder='Description' />
+                        <ForwardRefInput ref={titleInputElRef} value={formObject.reco_description} onChange={handleInputChange} name='reco_description' placeholder='Description' />
 
-                        <ForwardRefInput ref={titleInputElRef} value={formObject.reco_keywords} onChange={handleInputChange} name='reco_keywords' placeholder='Keywords' />
-                    </Col>
-                    <FormBtn
-                        disabled={!formObject.description}
-                        onClick={handleFormSubmit}>
-                        Upload Recommendation
+                        <ForwardRefInput ref={titleInputElRef} value={formObject.reco_keywords} onChange={handleInputChange} name='reco_keywords' placeholder='Keywords' /> */}
+                        </Col>
+                        <FormBtn
+                            disabled={!formObject.reco_name}
+                            onClick={handleFormSubmit}>
+                            Upload Recommendation
 					</FormBtn>
-                </form>
-            </Col>
-        </Row>
+                    </form>
+                </Col>
+            </Row>
 
-        <Row>
-            <Col size="md-12">
-                {recos.length ? (
-                    <Table>
-                        {recos.map(reco => (
-                            <Tr key={reco._id}>
-                                <Td>
-                                    {reco.reco_name}
-                                </Td>
-                            </Tr>
-                        ))}
-                    </Table>
-                ) : (
-                        <h3>Upload a Recommendation</h3>
-                    )}
+            <Row>
+                <Col size="md-12">
+                    {recos.length ? (
+                        <Table>
+                            {recos.map(reco => (
+                                <Tr key={reco._id}>
+                                    <Td>
+                                        {reco.reco_name}
+                                    </Td>
+                                </Tr>
+                            ))}
+                        </Table>
+                    ) : (
+                            <h3>Upload a Recommendation</h3>
+                        )}
 
 
-            </Col>
-        </Row>
-    </Container>
+                </Col>
+            </Row>
+        </Container>
     </>
-    
+
 
 }
 
