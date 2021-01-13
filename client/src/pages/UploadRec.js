@@ -35,7 +35,8 @@ function UploadRec({ username }) {
             reco_link: "",
             reco_description: "",
             reco_keywords: "",
-            username: "", username
+            username: "", 
+            username
         })
 
         loadMyRecos();
