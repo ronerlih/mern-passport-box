@@ -21,8 +21,8 @@ function DisplayBook({ reco_name, reco_description, reco_link, reco_pic, reco_ke
             </Row>
             <Row>
                 <Col size="md-6">
-                    <p className="font-italic">Created On: {reco_date} </p><br></br>
-                    <p className="font-italic">Keywords: {reco_keywords} </p>
+                    <p className="font-italic text-dark">Created On: {reco_date} </p><br></br>
+                    <p className="font-italic text-dark">Keywords: {reco_keywords} </p>
                 </Col>
             </Row>
             <Row>

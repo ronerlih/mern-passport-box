@@ -3,6 +3,7 @@ const db = require("../models");
 // Defining methods for the commentsController
 module.exports = {
   findAll: function(req, res) {
+    console.log("findAll working")
     db.Recos
       .find(req.query)
       .sort({ date: -1 })
@@ -27,18 +28,19 @@ module.exports = {
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
+
   // update: function(req, res) {
   //    db.Comment
   //     .findOneAndUpdate({ _id: req.params.id }, req.body)
   //     .then(dbModel => res.json(dbModel))
   //     .catch(err => res.status(422).json(err));
   // },
-  // remove: function(req, res) {
-  //    db.Comment
-  //     .findById({ _id: req.params.id })
-  //     .then(dbModel => dbModel.remove())
-  //     .then(dbModel => res.json(dbModel))
-  //     .catch(err => res.status(422).json(err));
-  // }
+  remove: function(req, res) {
+     db.Comment
+      .findById({ _id: req.params.id })
+      .then(dbModel => dbModel.remove())
+      .then(dbModel => res.json(dbModel))
+      .catch(err => res.status(422).json(err));
+  }
   // TO-DO: find by user
 };

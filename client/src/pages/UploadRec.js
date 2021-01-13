@@ -44,7 +44,8 @@ function UploadRec({ username }) {
 
     function loadMyRecos() {
         API.getMyRecos()
-            .then(res => setRecoState({ ...recoState, recos: res }))
+            // .then(res => setRecoState({ ...recoState, recos: res }))
+            .then(res => setRecoState({ ...recoState, recos: res.data }))
             .catch(err => console.log(err));
     }
 
@@ -67,7 +68,7 @@ function UploadRec({ username }) {
             reco_keywords: formObject.reco_keywords,
             username: formObject.username
         })
-            // .then(recoUploaded)
+            .then(loadMyRecos)
             .then(() => setFormObject({
                 reco_name: "",
                 reco_pic: "",
@@ -82,7 +83,6 @@ function UploadRec({ username }) {
 
     return <>
         <Container>
-            <div>Upload</div>
             <Row>
                 <Col size='md-12'>
                     <form>
