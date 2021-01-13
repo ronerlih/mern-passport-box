@@ -4,6 +4,8 @@ const db = require("../models");
 module.exports = {
   findAll: function(req, res) {
     console.log("findAll working")
+    console.log(req.user.recos)
+    console.log(req.query)
     db.Recos
       .find(req.query)
       .sort({ date: -1 })

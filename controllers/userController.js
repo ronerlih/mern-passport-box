@@ -9,7 +9,8 @@ module.exports = {
          _id: req.user._id,
          username: req.user.username,
          email: req.user.email,
-         comments: req.user.comments
+         // comments: req.user.comments
+         recos: req.user.recos
       });
    },
 
@@ -42,7 +43,8 @@ module.exports = {
                _id: req.user._id,
                username: req.user.username,
                email: req.user.email,
-               comments: req.user.comments
+               // comments: req.user.comments
+               recos: req.user.recos
          })
    }
 }

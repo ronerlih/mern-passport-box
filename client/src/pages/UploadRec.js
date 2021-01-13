@@ -85,27 +85,27 @@ function UploadRec({ username }) {
         <Container>
             <Row>
                 <Col size='md-12'>
-                    <form>
-                        <Col size='sm-12'>
-                            <Card title="Upload a Recommendation">
-                                <form>
-                                    <div className="form-group">
-                                        <Input value={formObject.reco_name} onChange={handleInputChange} name='reco_name' placeholder='Title' />
-                                        <Input className='form-control' value={formObject.reco_description} onChange={handleInputChange} name='reco_description' placeholder='description' />
-                                        <Input className='form-control' value={formObject.reco_pic} onChange={handleInputChange} name='reco_pic' placeholder='pic' />
-                                        <Input className='form-control' value={formObject.reco_link} onChange={handleInputChange} name='reco_link' placeholder='link' />
-                                        <Input className='form-control' value={formObject.reco_keywords} onChange={handleInputChange} name='reco_keywords' placeholder='keywords' />
-                                    </div>
-                                </form>
-                            </Card>
-                        </Col>
-                        <FormBtn
-                            disabled={!formObject.reco_name}
-                            onClick={handleFormSubmit}>
-                            Upload Recommendation
+
+
+                    <Card title="Upload a Recommendation">
+                        <form>
+                            <div className="form-group">
+                                <Input value={formObject.reco_name} onChange={handleInputChange} name='reco_name' placeholder='Title' />
+                                <Input className='form-control' value={formObject.reco_description} onChange={handleInputChange} name='reco_description' placeholder='description' />
+                                <Input className='form-control' value={formObject.reco_pic} onChange={handleInputChange} name='reco_pic' placeholder='pic' />
+                                <Input className='form-control' value={formObject.reco_link} onChange={handleInputChange} name='reco_link' placeholder='link' />
+                                <Input className='form-control' value={formObject.reco_keywords} onChange={handleInputChange} name='reco_keywords' placeholder='keywords' />
+                            </div>
+                        </form>
+                    </Card>
+
+                    <FormBtn
+                        disabled={!formObject.reco_name}
+                        onClick={handleFormSubmit}>
+                        Upload Recommendation
 					    </FormBtn>
-                    </form>
                 </Col>
+
             </Row>
 
             <Row>
