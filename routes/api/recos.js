@@ -8,8 +8,8 @@ router.route("/")
   .post(recosController.create);
 
 router
-  .route(":/keywords")
-  .get(recosController.findById)
+  .route("/:keywords")
+  .get(recosController.findByKeywords)
 
 // Matches with "/api/comments/:id"
 // router
