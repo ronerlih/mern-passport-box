@@ -13,9 +13,9 @@ module.exports = {
       .catch(err => res.status(422).json(err));
   },
   findById: function(req, res) {
-     console.log(req.params.id)
+     console.log(req.params.keywords)
     db.Recos
-      .findById(req.params.id)
+      .findById(req.params.keywords)
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
