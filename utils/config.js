@@ -2,12 +2,12 @@ module.exports = {
 	mongoOptions: {
 		useNewUrlParser: true,
 		useUnifiedTopology: true,
-      autoIndex: false,
-      useFindAndModify: false
+		autoIndex: false,
+		useFindAndModify: false
 	},
 	sessionOptions: {
-      secret: "keyboard cat",
-      name: "stats",
+		secret: "keyboard cat",
+		name: "stats",
 		resave: false,
 		saveUninitialized: true,
 		cookie: {
