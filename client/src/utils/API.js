@@ -13,8 +13,12 @@ export default {
   },
 
   //gets recos according to search term and keywords
-  getSearchedRecos: function (searchTerm) {
-    return axios.get("/api/uploadRec", { params: { searchTerm: "reco_keywords:" + searchTerm } });
+  // getSearchedRecos: function (searchTerm) {
+  //   return axios.get("/api/uploadRec", { params: { searchTerm: "reco_keywords:" + searchTerm } });
+  // },
+
+  findKeywordRecos: function (searchTerm) {
+    return axios.get("/api/uploadRec/" + searchTerm);
   },
 
   //saves a Reco

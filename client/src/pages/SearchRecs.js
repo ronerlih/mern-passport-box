@@ -29,10 +29,10 @@ class Search extends Component {
     };
 
     getSearchedRecos = () => {
-        API.getSearchedRecos(this.state.searchTerm)
+        API.findKeywordRecos(this.state.searchTerm)
             .then(res =>
                 this.setState({
-                    recoResults: res.data
+                    recoResults: res
                 })
             )
             .catch(() =>
