@@ -22,8 +22,7 @@ function UploadRec({ username }) {
         reco_pic: "",
         reco_link: "",
         reco_description: "",
-        reco_keywords: "",
-        username: ""
+        reco_keywords: ""
     });
 
 
@@ -34,9 +33,7 @@ function UploadRec({ username }) {
             reco_pic: "",
             reco_link: "",
             reco_description: "",
-            reco_keywords: "",
-            username: "", 
-            username
+            reco_keywords: ""
         })
 
         loadMyRecos();
@@ -45,7 +42,7 @@ function UploadRec({ username }) {
 
     function loadMyRecos() {
         API.getMyRecos()
-            // .then(res => setRecoState({ ...recoState, recos: res }))
+            .then(d => console.log(d))
             .then(res => setRecoState({ ...recoState, recos: res.data }))
             .catch(err => console.log(err));
     }
@@ -60,14 +57,12 @@ function UploadRec({ username }) {
     // When form submitted, use API.saveReco method to save reco data
     function handleFormSubmit(event) {
         event.preventDefault();
-        // if (formObject.body) {
         API.uploadReco({
             reco_name: formObject.reco_name,
             reco_pic: formObject.reco_pic,
             reco_link: formObject.reco_link,
             reco_description: formObject.reco_description,
-            reco_keywords: formObject.reco_keywords,
-            username: formObject.username
+            reco_keywords: formObject.reco_keywords
         })
             .then(loadMyRecos)
             .then(() => setFormObject({
@@ -75,11 +70,9 @@ function UploadRec({ username }) {
                 reco_pic: "",
                 reco_link: "",
                 reco_description: "",
-                reco_keywords: "",
-                username: ""
+                reco_keywords: ""
             }))
             .catch(err => console.log(err));
-        // }
     }
 
 

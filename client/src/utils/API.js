@@ -3,7 +3,7 @@ import axios from "axios";
 export default {
   //saves a reco to the database
   uploadReco: function (recoData) {
-    console.log(recoData)
+    // console.log(recoData)
     return axios.post("/api/uploadRec", recoData);
   },
 
