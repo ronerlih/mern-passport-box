@@ -27,11 +27,12 @@ module.exports = {
      // if no user on the session
      console.log("worked")
      if(!req.user) return res.status(401).end('user isnt authenticated')
-    console.log(req.body)
+      console.log(req.body)
      db.Recos
-      .create({username: req.username, reco_name: req.reco_name, reco_pic: req.reco_pic, reco_link: req.reco_link, reco_discription: req.reco_discription, reco_keywords: req.reco_keywords, email: req.user.email})
+      .create({username: req.body.username, reco_name: req.body.reco_name, reco_pic: req.body.reco_pic, reco_link: req.body.reco_link, reco_discription: req.body.reco_discription, reco_keywords: req.body.reco_keywords })
+      .then(dbModel => res.json(dbModel).then(console.log(dbModel)))
       .then(({_id}) => db.User.findOneAndUpdate({_id: req.user._id}, { $push: { recos: _id } }, { new: true }))
-      .then(dbModel => res.json(dbModel))
+      // .then(user => res.json(user).then(console.log(user)))
       .catch(err => res.status(422).json(err));
   },
   // update: function(req, res) {
