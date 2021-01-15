@@ -33,7 +33,9 @@ function UploadRec({ username }) {
             reco_pic: "",
             reco_link: "",
             reco_description: "",
-            reco_keywords: ""
+            reco_keywords: "",
+            username: "",
+            username
         })
 
         loadMyRecos();
@@ -99,41 +101,41 @@ function UploadRec({ username }) {
                         onClick={handleFormSubmit}>
                         Upload Recommendation
 					    </FormBtn>
-                </Col>
+            </Col>
 
-            </Row>
+        </Row>
 
-            <Row>
-                <Col size="md-12">
-                    <Card>
-                        {recoState.recos.length > 0 ? (
-                            <List>
-                                {recoState.recos.map(result => (
-                                    <DisplayRecos
-                                        key={result._id}
-                                        title={result.reco_name}
-                                        pic={result.reco_pic}
-                                        link={result.reco_link}
-                                        description={result.reco_description}
-                                        keywords={result.reco_keywords}
-                                        date={result.reco_date}
-                                        Button={() => (
-                                            <button
-                                                className="btn btn-dark ml-2"
-                                                onClick={() => this.handleRecoSave(result._id)}>Save Recommendation</button>
-                                        )}
+        <Row>
+            <Col size="md-12">
+                <Card>
+                    {recoState.recos.length > 0 ? (
+                        <List>
+                            {recoState.recos.map(result => (
+                                <DisplayRecos
+                                    key={result._id}
+                                    title={result.reco_name}
+                                    pic={result.reco_pic}
+                                    link={result.reco_link}
+                                    description={result.reco_description}
+                                    keywords={result.reco_keywords}
+                                    date={result.reco_date}
+                                    Button={() => (
+                                        <button
+                                            className="btn btn-dark ml-2"
+                                            onClick={() => this.handleRecoSave(result._id)}>Save Recommendation</button>
+                                    )}
 
-                                    />
-                                ))}
-                            </List>
-                        ) : (
-                                <h3 className="text-center">{recoState.prompt}</h3>
-                            )}
-                    </Card>
-                </Col>
-            </Row>
-        </Container>
-    </>
+                                />
+                            ))}
+                        </List>
+                    ) : (
+                            <h3 className="text-center">{recoState.prompt}</h3>
+                        )}
+                </Card>
+            </Col>
+        </Row>
+    </Container>
+</>
 
 
 }
