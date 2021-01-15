@@ -44,9 +44,11 @@ function UploadRec({ username }) {
     }, [username]);
 
     function loadMyRecos() {
+        console.log("load my recos");
         API.getMyRecos()
             // .then(res => setRecoState({ ...recoState, recos: res }))
-            .then(res => setRecoState({ ...recoState, recos: res }))
+            .then(res => setRecoState({ ...recoState, recos: res.data }))
+            .then(console.log(recoState.recos))
             .catch (err => console.log(err));
 }
 
