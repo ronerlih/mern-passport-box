@@ -9,6 +9,7 @@ import { Table, Tr, Td } from "../components/Table";
 import { ForwardRefInput, FormBtn } from "../components/Form";
 import { List } from "../components/List";
 import DisplayRecos from "../components/DisplayRecos";
+import FileUpload from '../components/FileUpload';
 
 function UploadRec({ username }) {
 
@@ -98,6 +99,7 @@ return <>
                             <Input className='form-control' value={formObject.reco_pic} onChange={handleInputChange} name='reco_pic' placeholder='pic' />
                             <Input className='form-control' value={formObject.reco_link} onChange={handleInputChange} name='reco_link' placeholder='link' />
                             <Input className='form-control' value={formObject.reco_keywords} onChange={handleInputChange} name='reco_keywords' placeholder='keywords' />
+                            <FileUpload/>
                         </div>
                     </form>
                 </Card>
