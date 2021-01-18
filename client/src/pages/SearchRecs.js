@@ -164,7 +164,7 @@ class Search extends Component {
         API.findKeywordRecos(this.state.searchTerm)
             .then(res =>
                 this.setState({
-                    recoResults: res
+                    recoResults: res.data
                 })
             )
             .catch(() =>
