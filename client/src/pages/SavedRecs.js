@@ -14,7 +14,7 @@ getSavedRecos = () => {
     API.getSavedRecos()
     .then(res =>
         this.setState({
-        recos: res
+        recos: res.data
         })
     )
     .catch(err => console.log(err));

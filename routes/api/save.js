@@ -1,7 +1,9 @@
 const router = require("express").Router();
 const saveController = require("../../controllers/saveController");
 
-// Matches with "/api/comments"
+router
+  .route("/")
+  .get(saveController.findByUser)
 router
   .route("/:id")
   .post(saveController.findAndUpdate)
