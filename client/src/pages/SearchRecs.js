@@ -176,17 +176,9 @@ class Search extends Component {
     };
 
     handleRecoSave = id => {
-        const reco = this.state.recoResults.find(reco => reco.id === id);
-
-        API.saveReco({
-            reco_Id: reco.reco_id,
-            reco_name: reco.reco_name,
-            reco_pic: reco.reco_pic,
-            reco_description: reco.reco_description,
-            reco_link: reco.reco_link,
-            reco_keywords: reco.reco_keywords,
-            date: reco.reco_date
-        }).then(() => this.getSearchedRecos())
+        // const reco = this.state.recoResults.find(reco => reco.id === id);
+        console.log(id)
+        API.saveReco(id).then(() => this.getSearchedRecos())
     }
 
     render() {

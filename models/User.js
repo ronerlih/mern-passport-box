@@ -22,7 +22,13 @@ const UserSchema = new mongoose.Schema({
     type: mongoose.Types.ObjectId,
     ref: "Recos"
   }
-]
+  ],
+  saved: [
+    {
+      type: mongoose.Types.ObjectId,
+      ref: "Recos"
+    }
+  ]
   // ..anything else you want on your user
 });
 
