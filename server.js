@@ -1,4 +1,5 @@
 const express = require("express");
+const fileUpload = require("express-fileupload");
 const mongoose = require("mongoose");
 const { mongoOptions, sessionOptions } = require("./utils/config");
 const routes = require("./routes");
@@ -9,6 +10,7 @@ const passport = require("./utils/passport");
 const logger = require("morgan");
 
 const PORT = process.env.PORT || 3001;
+app.use(fileUpload());
 
 // logging (development)
 app.use(logger("dev"));
@@ -27,6 +29,9 @@ app.use(passport.session());
 
 // Add routes, both API and view
 app.use(routes);
+
+//upload Endpoint
+//app.post('/api/upload', );
 
 // Connect to the Mongo DB
 mongoose.connect(process.env.ATLAS_URL || "mongodb://localhost/Perch", mongoOptions);
