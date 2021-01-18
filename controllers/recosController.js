@@ -30,11 +30,11 @@ module.exports = {
     if (req.files === null) {
       return res.status(400).json({ msg: 'No file uploaded' });
     }
-    console.log("[node:] ", req.files)
+    console.log("[node:] ", req.files.file)
     const file = req.files.file;
 
-    
-    console.log("[node:] ", file.name)
+    console.log("[node1:] ", file)
+    console.log("[node2:] ", file.name)
     db.Recos
       .create({ username: req.body.username, reco_name: req.body.reco_name, reco_pic:{data:file.data, contentType:file.mimetype}, reco_link: req.body.reco_link, reco_discription: req.body.reco_discription, reco_keywords: req.body.reco_keywords })
       // .then(dbModel => res.json(dbModel).then(console.log(dbModel)))
